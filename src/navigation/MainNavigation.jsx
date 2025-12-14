@@ -1,11 +1,12 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 // Icons
 import { Home, Code, Phone, User } from 'lucide-react-native';
 
-// Custom Tab Icon Component
+// Component
 import TabIcon from '../components/TabIcon'; 
 
 // Screens
@@ -26,7 +27,6 @@ const Tabs = [
   { name: 'Contact', component: ContactScreen, Icon: Phone },
 ];
 
-// Wrapper component to add animation to each screen
 const createAnimatedScreen = (ScreenComponent) => {
   return (props) => {
     return (
@@ -38,6 +38,8 @@ const createAnimatedScreen = (ScreenComponent) => {
 };
 
 function MainNavigation() {
+  const insets = useSafeAreaInsets();
+
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -45,7 +47,7 @@ function MainNavigation() {
         screenOptions={{
           headerShown: false,
           tabBarShowLabel: false,
-          tabBarStyle: styles.tabBar,
+          tabBarStyle: [styles.tabBar, { bottom: insets.bottom + 20 }],
           tabBarActiveTintColor: '#ffffff',
           tabBarInactiveTintColor: 'gray',
         }}
@@ -77,7 +79,6 @@ const styles = StyleSheet.create({
     paddingTop: 10,
     paddingHorizontal: 10,
     position: 'absolute',
-    bottom: 25,
     marginHorizontal: 30,
     backgroundColor: 'white',
     borderRadius: 35,

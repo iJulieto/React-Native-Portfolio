@@ -1,0 +1,39 @@
+{
+  "Projects": [
+    {
+      "id": "1",
+      "title": "Municipal Information System",
+      "description": "A desktop application for managing municipal data.",
+      "image": "mis",
+      "tags": ["C#", "Microsoft SQL Server"]
+    },
+    {
+      "id": "2",
+      "title": "Learning Management System",
+      "description": "A replica of an online learning platform for educational institutions.",
+      "image": "lms",
+      "tags": ["HTML", "CSS", "JavaScript"]
+    },
+    {
+      "id": "3",
+      "title": "Vans Store",
+      "description": "A replica of an e-commerce website for Vans products.",
+      "image": "vans",
+      "tags": ["HTML", "Bootstrap", "JavaScript", "PHP", "MySQL"]
+    },
+    {
+      "id": "4",
+      "title": "Portfolio",
+      "description": "A personal portfolio website to showcase projects and achievements.",
+      "image": "portfolio",
+      "tags": ["React", "Tailwind"]
+    },
+    {
+      "id": "5",
+      "title": "Agri-Kart",
+      "description": "A web-based marketplace for agricultural products.",
+      "image": "agrikart",
+      "tags": ["React", "Bootstrap", "PHP", "MySQL"]
+    }
+  ]
+}

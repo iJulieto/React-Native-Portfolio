@@ -1,0 +1,51 @@
+{
+  "Profile_Content": {
+    "name": "Julieto Lirazan",
+    "role": "BSIT Student | Student Leader",
+    "about": "I transform ideas into extraordinary digital solutions that captivate and inspire people to build their own."
+  },
+  "Achievements": [
+    {
+      "id": 1,
+      "year": "2025",
+      "title": "Hack4Gov",
+      "description": "A ethical hacking competition organized by the government.",
+      "image": "h4g"
+    },
+    {
+      "id": 2,
+      "year": "2025",
+      "title": "FPJ Youth National Convention",
+      "description": "A national convention for youth leaders and advocates.",
+      "image": "fpjy"
+    },
+    {
+      "id": 3,
+      "year": "2024",
+      "title": "TESDA - NCII in Computer Systems Servicing",
+      "description": "A certification for computer systems servicing skills.",
+      "image": "tesda"
+    },
+    {
+      "id": 4,
+      "year": "2023",
+      "title": "Oriental Mindoro Parliament of Youth Leaders",
+      "description": "A provincial youth leadership organization.",
+      "image": "ompyl"
+    },
+    {
+      "id": 5,
+      "year": "2023",
+      "title": "Consistent Achiever",
+      "description": "A recognition for maintaining high academic performance throughout the year.",
+      "image": "academics"
+    },
+    {
+      "id": 6,
+      "year": "2021 - 2024",
+      "title": "Supreme Student Council",
+      "description": "A highest student government body in the institution.",
+      "image": "ssc"
+    }
+  ]
+}

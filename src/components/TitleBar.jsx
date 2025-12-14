@@ -1,8 +1,12 @@
-import { View, Text, StyleSheet} from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const TitleBar = ({ title }) => {
+  const insets = useSafeAreaInsets();
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { top: insets.top + 10 }]}>
       <Text style={styles.titleText}>{title}</Text>
     </View>
   );
@@ -11,7 +15,6 @@ const TitleBar = ({ title }) => {
 const styles = StyleSheet.create({
   container: {
     position: 'absolute',
-    top: 75,
     width: '50%',
     height: 50,
     backgroundColor: 'black',

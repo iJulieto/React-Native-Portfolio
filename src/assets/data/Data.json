@@ -1,0 +1,16 @@
+{
+  "Tech_Stack": [
+    { "name": "C#", "icon": "csharp" },
+    { "name": "Microsoft SQL Server", "icon": "msql" },
+    { "name": "HTML", "icon": "html" },
+    { "name": "CSS", "icon": "css" },
+    { "name": "Bootstrap", "icon": "bootstrap" },
+    { "name": "Tailwind", "icon": "tailwind" },
+    { "name": "JavaScript", "icon": "javascript" },
+    { "name": "PHP", "icon": "php" },
+    { "name": "MySQL", "icon": "mysql" },
+    { "name": "Laravel", "icon": "laravel" },
+    { "name": "React", "icon": "react" },
+    { "name": "React Native", "icon": "react" }
+  ]
+}

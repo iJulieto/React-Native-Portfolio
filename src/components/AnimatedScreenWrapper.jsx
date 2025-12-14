@@ -1,41 +1,10 @@
-import { useEffect } from 'react';
+import React from 'react';
 import { StyleSheet } from 'react-native';
-import { useIsFocused } from '@react-navigation/native';
-import Animated, { useSharedValue, useAnimatedStyle, withTiming, Easing } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
+import useScreenAnimation from '../custom_hooks/useScreenAnimation';
 
 const AnimatedScreenWrapper = ({ children }) => {
-  const isFocused = useIsFocused();
-  const translateX = useSharedValue(isFocused ? 0 : 300);
-  const opacity = useSharedValue(isFocused ? 1 : 0);
-
-  useEffect(() => {
-    if (isFocused) {
-      translateX.value = withTiming(0, {
-        duration: 300,
-        easing: Easing.out(Easing.cubic),
-      });
-      opacity.value = withTiming(1, {
-        duration: 300,
-        easing: Easing.out(Easing.cubic),
-      });
-    } else {
-      translateX.value = withTiming(300, {
-        duration: 300,
-        easing: Easing.in(Easing.cubic),
-      });
-      opacity.value = withTiming(0, {
-        duration: 300,
-        easing: Easing.in(Easing.cubic),
-      });
-    }
-  }, [isFocused]);
-
-  const animatedStyle = useAnimatedStyle(() => {
-    return {
-      transform: [{ translateX: translateX.value }],
-      opacity: opacity.value,
-    };
-  });
+  const animatedStyle = useScreenAnimation();
 
   return (
     <Animated.View style={[styles.container, animatedStyle]}>
@@ -51,4 +20,3 @@ const styles = StyleSheet.create({
 });
 
 export default AnimatedScreenWrapper;
-

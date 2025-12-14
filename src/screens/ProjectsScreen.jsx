@@ -1,58 +1,49 @@
 import React from 'react';
-import { View, Text, StyleSheet, FlatList, Image, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useNavigation } from '@react-navigation/native';
 
 // TitleBar
 import TitleBar from '../components/TitleBar';
+import Card from '../components/Card';
+import CustomButton from '../components/CustomButton';
 
-// 2. Sample Data (You can replace this with real data later)
-const PROJECTS = [
-  {
-    id: '1',
-    title: 'Portfolio Website',
-    description: 'A personal portfolio built with PHP and Custom CSS.',
-    image: 'https://cdn-icons-png.flaticon.com/512/1006/1006771.png', // Placeholder icon
-    tags: ['PHP', 'CSS', 'MySQL'],
-  },
-  {
-    id: '2',
-    title: 'E-Commerce App',
-    description: 'Mobile shopping app with cart functionality.',
-    image: 'https://cdn-icons-png.flaticon.com/512/3081/3081559.png',
-    tags: ['React Native', 'Firebase'],
-  },
-  {
-    id: '3',
-    title: 'Task Manager',
-    description: 'A productivity tool to track daily tasks.',
-    image: 'https://cdn-icons-png.flaticon.com/512/2641/2641409.png',
-    tags: ['JavaScript', 'Node.js'],
-  },
-];
+import Data from '../assets/data/Data.json';
+import ProjectData from '../assets/data/ProjectData.json';
+const { Tech_Stack } = Data;
+const { Projects } = ProjectData;
+
+import { ProjectImages, TechStackImages } from '../assets/data/ImageMap.js';
 
 const ProjectsScreen = () => {
+  
+  const navigation = useNavigation();
 
-  // 3. This function controls how each single "Card" looks
   const renderProjectItem = ({ item }) => (
-    <View style={styles.card}>
+    <Card>
       <View style={styles.cardHeader}>
-        <Image source={{ uri: item.image }} style={styles.projectImage} />
+        <Image source={ProjectImages[item.image]} style={styles.projectImage} />
         <View style={styles.headerText}>
           <Text style={styles.projectTitle}>{item.title}</Text>
           <View style={styles.tagContainer}>
-            {item.tags.map((tag, index) => (
-              <Text key={index} style={styles.tag}>{tag}</Text>
-            ))}
+            {item.tags.map((tag, index) => {
+              const techItem = Tech_Stack.find(t => t.name === tag);
+              const iconSource = techItem ? TechStackImages[techItem.icon] : null;
+              return (
+                <View key={index} style={styles.tagBadge}>
+                  {iconSource && <Image source={iconSource} style={styles.tagLogo} />}
+                  <Text style={styles.tagText}>{tag}</Text>
+                </View>
+              );
+            })}
           </View>
         </View>
       </View>
       
       <Text style={styles.projectDescription}>{item.description}</Text>
 
-      <TouchableOpacity style={styles.button}>
-        <Text style={styles.buttonText}>View Details</Text>
-      </TouchableOpacity>
-    </View>
+      <CustomButton title="View Details" onPress={() => navigation.navigate('Contact')} style={styles.button}  />
+    </Card>
   );
 
   return (
@@ -61,7 +52,7 @@ const ProjectsScreen = () => {
       
       <View style={styles.container}>
         <FlatList
-          data={PROJECTS}
+          data={Projects}
           renderItem={renderProjectItem}
           keyExtractor={item => item.id}
           contentContainerStyle={styles.listContent}
@@ -75,28 +66,15 @@ const ProjectsScreen = () => {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
+    backgroundColor: 'white',
   },
   container: {
     flex: 1,
-    paddingHorizontal: 20,
+    paddingHorizontal: 30,
   },
   listContent: {
-    paddingTop: 20,
-    paddingBottom: 20,
-  },
-  // --- CARD STYLING ---
-  card: {
-    backgroundColor: 'white',
-    borderRadius: 15,
-    padding: 15,
-    marginBottom: 20,
-    // Shadows
-    elevation: 3,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.1,
-    shadowRadius: 4,
+    paddingTop: 100,
+    paddingBottom: 100,
   },
   cardHeader: {
     flexDirection: 'row',
@@ -104,8 +82,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   projectImage: {
-    width: 50,
-    height: 50,
+    width: 100,
+    height: 100,
+    borderRadius: 8,
     marginRight: 15,
   },
   headerText: {
@@ -116,20 +95,29 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     color: '#333',
   },
-  // --- TAGS (the little pills for "PHP", "CSS") ---
   tagContainer: {
     flexDirection: 'row',
+    flexWrap: 'wrap',
     marginTop: 4,
   },
-  tag: {
-    fontSize: 10,
-    color: '#6200ea',
-    backgroundColor: '#ede7f6', // Light purple bg
+  tagBadge: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    backgroundColor: '#e0f2f1',
     paddingHorizontal: 8,
     paddingVertical: 2,
     borderRadius: 4,
     marginRight: 6,
-    overflow: 'hidden', // iOS fix for borderRadius on Text
+    marginBottom: 4,
+  },
+  tagLogo: {
+    width: 12,
+    height: 12,
+    marginRight: 4,
+  },
+  tagText: {
+    fontSize: 10,
+    color: '#1fbab7',
   },
   projectDescription: {
     fontSize: 14,
@@ -137,17 +125,8 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     marginBottom: 15,
   },
-  // --- BUTTON ---
   button: {
-    backgroundColor: '#6200ea',
-    paddingVertical: 10,
-    borderRadius: 8,
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    fontSize: 14,
+    marginTop: 5,
   },
 });
 
